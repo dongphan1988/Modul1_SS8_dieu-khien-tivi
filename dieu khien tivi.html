@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Remote() {
+        this.increaseVolume = function (television) {
+            if (television.status == true) {
+                television.increaseVolume()
+            } else {
+                alert("television off")
+            }
+        };
+        this.decreaseVolume = function (television) {
+            if (television.status == true) {
+                television.decreaseVolume()
+            } else {
+                alert("television off")
+            }
+        };
+        this.setChannel = function (television, channel) {
+            if (television.status == true) {
+                television.channel = channel;
+            } else {
+                alert("television off")
+            }
+        };
+        this.OnOff = function (television) {
+            if(television.status == true){
+                alert("television off");
+                television.status = false;
+            }else{
+                television.status = true;
+                alert("television on");
+            }
+        };
+    }
+
+    function Television(channel, volume, status) {
+        this.volume = volume;
+        this.channel = channel;
+        this.status = status;
+
+        this.checkStatus = function () {
+            if (this.status) {
+                alert("Television on");
+            } else {
+                alert("Television off")
+            }
+
+        };
+
+        this.increaseVolume = function () {
+            if (this.status) {
+                if (this.volume < 100) {
+                    this.volume++;
+                } else {
+                    return this.volume;
+                }
+            } else {
+                alert("Television off");
+            }
+        };
+        this.increaseChannel = function () {
+            if (this.status) {
+                if (this.channel < 25) {
+                    this.channel++;
+                } else {
+                    return this.channel;
+                }
+            } else {
+                alert("Television off");
+            }
+        };
+        this.decreaseVolume = function () {
+            if (this.status) {
+                if (this.volume > 0) {
+                    this.volume--;
+                } else {
+                    return this.volume;
+                }
+            } else {
+                alert("Television off");
+            }
+        };
+        this.increaseChannel = function () {
+            if (this.status) {
+                if (this.channel > 1) {
+                    this.channel++;
+                } else {
+                    return this.channel;
+                }
+            } else {
+                alert("Television off");
+            }
+        };
+
+        this.OnOff = function () {
+            if(this.status == true){
+                this.status = false;
+            }else{
+                this.status = true;
+            }
+        };
+    }
+
+    let remote = new Remote();
+    let television = new Television(11, 25, false)
+    television.checkStatus();
+    remote.OnOff(television);
+    remote.setChannel(television,7);
+    remote.decreaseVolume(television);
+    remote.decreaseVolume(television);
+    remote.OnOff(television);
+
+</script>
+</body>
+</html>
